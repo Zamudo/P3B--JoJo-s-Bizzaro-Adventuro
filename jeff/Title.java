@@ -16,7 +16,7 @@ public class Title extends World
     public Title()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(800, 600, 1); 
+        super(800, 534, 1); 
 
         addObject(titleLable, getWidth() / 2, -getHeight() + 650);
         prepare();
@@ -42,5 +42,6 @@ public class Title extends World
         Label label = new Label("Press <space> to start", 50);
         addObject(label,411,430);
         label.setLocation(416,424);
+        frank.setLocation(384,271);
     }
 }

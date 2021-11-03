@@ -17,7 +17,30 @@ public class Title extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 600, 1); 
-        
+
         addObject(titleLable, getWidth() / 2, -getHeight() + 650);
+        prepare();
+    }
+
+    public void act()
+    {
+        if(Greenfoot.isKeyDown("space"))
+        {
+            MyWorld gameWorld = new MyWorld();
+            Greenfoot.setWorld(gameWorld);
+        }
+    }
+
+    /**
+     * Prepare the world for the start of the program.
+     * That is: create the initial objects and add them to the world.
+     */
+    private void prepare()
+    {
+        Frank frank = new Frank();
+        addObject(frank,345,271);
+        Label label = new Label("Press <space> to start", 50);
+        addObject(label,411,430);
+        label.setLocation(416,424);
     }
 }

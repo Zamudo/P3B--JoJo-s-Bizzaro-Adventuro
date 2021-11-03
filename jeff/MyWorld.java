@@ -7,7 +7,7 @@ import java.util.Random;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MyWorld extends greenfoot.World
+public class MyWorld extends World
 {
 
     /**
@@ -52,7 +52,6 @@ public class MyWorld extends greenfoot.World
         arr.add("chimpanzee");
         arr.add("coffee");
         arr.add("cold");
-        //26th word
         arr.add("cotton");
         arr.add("crush");
         arr.add("danger");
@@ -78,11 +77,14 @@ public class MyWorld extends greenfoot.World
         arr.add("foam");
         arr.add("frost");
         arr.add("game");
-
-        for(int i = 0; i < 50; i++)
+        arr.add("geometry");
+        arr.add("ghost");
+        
+        for(int i = 50; i > 0; i--)
         {
-            int num = r.nextInt(50);
+            int num = Greenfoot.getRandomNumber(i);
             stack.push(arr.get(num));
+            System.out.println(arr.get(num));
             arr.remove(num);
         }
     }

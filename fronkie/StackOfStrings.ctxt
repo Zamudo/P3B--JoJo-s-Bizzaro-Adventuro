@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=StackOfStrings
+comment0.text=\r\n\ StackOfStrings.\r\n\ \r\n\ @author\ Chan\ \r\n
+comment1.params=
+comment1.target=boolean\ isEmpty()
+comment2.params=item
+comment2.target=void\ push(java.lang.String)
+comment3.params=
+comment3.target=java.lang.String\ pop()
+comment4.params=
+comment4.target=java.lang.String\ peek()
+comment5.params=
+comment5.target=java.util.Iterator\ iterator()
+numComments=6

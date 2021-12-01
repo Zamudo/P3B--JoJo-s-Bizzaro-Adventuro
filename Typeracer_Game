@@ -1,0 +1,202 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.ArrayList;
+
+/**
+ * Write a description of class MyWorld here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class MyWorld extends World
+{
+    public int levelNumber = 0;
+    Label levelLabel; 
+    Label gameOverLabel;
+    Label gameWonLabel;
+    String levelText;
+    private int delayTimer = 1000;
+    private int gameTimer;
+    String userInput;
+    int typeIndex = 0;
+    boolean gameStart = false;
+    boolean levelPassed = false;
+    int lengthOfArray;
+    //correctLetter arrayList
+    //wrongLetter arrayList
+    //SimpleTimer labelTimer = new SimpleTimer();    
+    char[] levelPhrase = new char[lengthOfArray];
+    int numOfElements = 5;
+    public void act()
+    {
+        
+    }
+    
+    
+    /**
+     * Constructor for objects of class MyWorld.
+     * 
+     */
+    public MyWorld()
+    {    
+        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        super(600, 400, 1); 
+        Giorno giorno = new Giorno();
+        addObject(giorno, 200, 200);
+        
+        
+        
+        Label levelLabel = new Label(levelText, 80);
+        addObject(levelLabel, 300, 200);
+        delayTimer --;
+        if(delayTimer <= 0)
+        {
+            removeObject(levelLabel);
+            delayTimer = 1000;
+        }
+        levelOne();
+        if(levelPassed == true)
+        {
+            levelTwo();
+            levelPassed = false;
+        }
+        else
+        {
+            gameOver();
+        }
+    }
+    public boolean userTyping()
+    {
+        if(Greenfoot.getKey()!=null)
+        {
+            return true;
+        }
+        return false;
+    }
+    public void levelOne()
+    {
+        lengthOfArray = 5;
+        levelPhrase[0] = 'H';
+        levelPhrase[1] = 'E';
+        levelPhrase[2] = 'L';
+        levelPhrase[3] = 'L';
+        levelPhrase[4] = 'O';
+        typeIndex = 0;
+        gameStart = false;
+        levelNumber = 1;
+        levelText = "Level One";
+        Label phraseLabel = new Label("Hello", 80);
+        addObject(phraseLabel, 300, 400);
+        Label goLabel = new Label("GO!", 80);
+        addObject(goLabel, 300, 200);
+        delayTimer --; 
+        if(delayTimer <= 0)
+        {
+            removeObject(goLabel);
+            delayTimer = 1000;
+        }
+        startGame();
+    }
+    public void levelTwo()
+    {
+        lengthOfArray = 2;
+        levelPhrase[0] = 'H';
+        levelPhrase[1] = 'I';
+        typeIndex = 0;
+        gameStart = false;
+        levelNumber = 1;
+        levelText = "Level Two";
+        Label phraseLabel = new Label("Hi", 80);
+        addObject(phraseLabel, 300, 400);
+        Label goLabel = new Label("GO!", 80);
+        addObject(goLabel, 300, 200);
+        delayTimer --; 
+        if(delayTimer <= 0)
+        {
+            removeObject(goLabel);
+            delayTimer = 1000;
+        }
+        startGame();
+    }
+    public void newLevel()
+    {
+        
+    }
+    public boolean comparePhrases()
+    {
+        for (int i = 0; i < numOfElements; i++)
+        {
+            for (int n = 0; n < userInput.length(); n++)
+            {
+                if(levelPhrase[i] == userInput.charAt(n))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public void startGame()
+    {
+        Boolean gameStart = true;
+        gameTimer = 10000;
+        gameTimer --;
+        if (gameStart == true && userTyping() == true)
+        {
+            //move enemy
+            if (userTyping() == true)
+            {
+                //if the user types, the index shifts along with the text as it grows.
+                typeIndex += 1;
+            }
+            if (Greenfoot.isKeyDown("backspace") && typeIndex != 0)
+            {
+                //if backspace is pressed, the index shifts back along with the text.
+                typeIndex -= 1;
+            }
+            if (userInput.charAt(typeIndex) != levelPhrase[typeIndex])
+            {
+                //if the user makes a mistake, the unmatching letter that they typed will become red.
+                //Letter at (typeIndex) will be red.
+                //color = red
+            }
+            if (userInput.charAt(typeIndex) == levelPhrase[typeIndex])
+            {
+                //if the user types correctly, the text will be green. 
+                //color = green
+                //move giorno 
+                
+                
+            }
+            if(typeIndex == numOfElements)
+            {
+                if(comparePhrases() == true)
+                {
+                    levelPassed = true;
+                }
+                else
+                {
+                    levelPassed = false;
+                }
+            }
+        }
+        if(gameTimer <= 0)
+        {
+            gameStart = false;
+            {
+                if (comparePhrases() == true)
+                {
+                    levelPassed = true;
+                }
+                else
+                {
+                    levelPassed = false;
+                }
+            }
+        }
+    }
+    public void gameOver()
+    {
+        //end game
+    }
+    
+}
